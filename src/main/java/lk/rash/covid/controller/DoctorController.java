@@ -18,7 +18,7 @@ public class DoctorController {
 
     @PostMapping("/register")
     public ResponseEntity saveDoctor(@RequestBody DoctorDto doctorDto){
-
+        service.save(doctorDto);
         return new ResponseEntity("Done", HttpStatus.OK);
     }
 
