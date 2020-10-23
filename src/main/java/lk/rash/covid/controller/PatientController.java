@@ -3,6 +3,8 @@ package lk.rash.covid.controller;
 import lk.rash.covid.dto.PatientDto;
 import lk.rash.covid.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,9 +14,9 @@ public class PatientController {
     PatientService service;
 
     @PostMapping("/register")
-    public String registerPatient(@RequestBody PatientDto patientDto){
+    public ResponseEntity registerPatient(@RequestBody PatientDto patientDto){
         service.save(patientDto);
-        return "OKkkkkkkk";
+        return new ResponseEntity("Done", HttpStatus.OK);
 
     }
 
