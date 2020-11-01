@@ -40,12 +40,12 @@ public class PatientDto {
 //        this.discharged_by = discharged_by;
 //    }
 //
-//    private int age;
-//    private Date admit_date;
-//    private String admitted_by;
-//    private Date discharge_date;
-//    private String discharged_by;
-//
+    private int age;
+    private Date admit_date;
+    private String admitted_by;
+    private Date discharge_date;
+    private String discharged_by;
+
 //    public PatientDto() {
 //    }
 //

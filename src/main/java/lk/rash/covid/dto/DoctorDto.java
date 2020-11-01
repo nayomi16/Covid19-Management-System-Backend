@@ -11,6 +11,7 @@ public class DoctorDto {
 
     private String id;
     private String name;
+    private String email;
     private String hospital_id;
     private boolean is_director;
 

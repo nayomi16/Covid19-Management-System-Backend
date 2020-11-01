@@ -4,19 +4,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Doctor {
+    
     @Id
     private String id;
     private String name;
-    private String hospital_id;
+    private String email;
     private boolean is_director;
+    private String hospital_id;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="hospital_id")
+//    private Hospital hospital;
+
+
 
 //    public Doctor() {
 //    }

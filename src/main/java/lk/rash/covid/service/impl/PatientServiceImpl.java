@@ -17,9 +17,29 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     ModelMapper modelMapper;
 
+
+
     @Override
     public void save(PatientDto patientDto) {
         Patient patient = modelMapper.map(patientDto, Patient.class);
         repository.save(patient);
     }
+
+    @Override
+    public int activeCasesCount() {
+        repository.getActiveCases();
+
+        return repository.getActiveCases();
+    }
+
+    @Override
+    public int dischargedCasesCount() {
+        return repository.getDischargedCases();
+    }
+
+//    @Override
+//    public void getPatientCount() {
+//        repository.getPatientCount();
+//    }
+
 }
