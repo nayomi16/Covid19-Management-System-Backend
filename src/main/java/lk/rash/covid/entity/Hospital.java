@@ -1,9 +1,11 @@
 package lk.rash.covid.entity;
 
 import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Data
@@ -11,6 +13,8 @@ import javax.persistence.Id;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Transactional
+@Table(name="`hospital`")
 public class Hospital {
     @Id
     private String id;

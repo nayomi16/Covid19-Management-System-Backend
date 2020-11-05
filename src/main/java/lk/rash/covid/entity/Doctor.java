@@ -3,6 +3,7 @@ package lk.rash.covid.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
@@ -10,6 +11,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
+@Table(name="`doctor`")
 public class Doctor {
     
     @Id
@@ -17,7 +20,13 @@ public class Doctor {
     private String name;
     private String email;
     private boolean is_director;
-    private String hospital_id;
+//    @Column(name="hospital_id")
+
+
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "hospital_id", referencedColumnName = "id", nullable = false)
+    private Hospital hospital;
+
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name="hospital_id")
 //    private Hospital hospital;

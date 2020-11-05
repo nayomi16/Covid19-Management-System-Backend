@@ -3,15 +3,17 @@ package lk.rash.covid.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
+@Table(name="`patient`")
 public class Patient {
     @Id
     private String id;
@@ -26,10 +28,16 @@ public class Patient {
     private String email;
     private int age;
     private Date admit_date;
-    private String admitted_by;
-    private Date discharge_date;
-    private String discharged_by;
 
+    private Date discharge_date;
+
+
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "admitted_by", referencedColumnName = "id", nullable = false)
+    private Doctor doctor;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "discharged_by", referencedColumnName = "id", nullable = false)
+    private Doctor doctor1;
 
 //    public Patient(String id, String first_name, String last_name, String district, int location_x, int location_y, String severity_level, String gender, String contact, String email, int age, Date admit_date, String admitted_by, Date discharge_date, String discharged_by) {
 //        this.id = id;
