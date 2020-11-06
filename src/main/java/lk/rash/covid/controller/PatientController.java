@@ -2,6 +2,7 @@ package lk.rash.covid.controller;
 
 import lk.rash.covid.dto.PatientCount;
 import lk.rash.covid.dto.PatientDto;
+import lk.rash.covid.dto.PatientUpdateDto;
 import lk.rash.covid.response.StandardResponse;
 import lk.rash.covid.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,11 @@ public class PatientController {
 //
 //    }
 
+    @PutMapping
+    public ResponseEntity updatePatient(@RequestBody PatientUpdateDto updateDto){
+        Boolean isUpdated = service.updatePatient(updateDto.getPatient_id(), updateDto.getSeverity_level(), updateDto.getAdmite_date(), updateDto.getAdmitted_by());
+        return new ResponseEntity(new StandardResponse(200,"updated",isUpdated),HttpStatus.OK);
+    }
 
 
 }

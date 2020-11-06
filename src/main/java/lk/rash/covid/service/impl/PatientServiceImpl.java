@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 @Transactional
 public class PatientServiceImpl implements PatientService {
@@ -35,6 +37,13 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public int dischargedCasesCount() {
         return repository.getDischargedCases();
+    }
+
+    @Override
+    public Boolean updatePatient(String patient_id, String severity_level, Date admite_date, String admitted_by) {
+        int i=repository.upadatePatient(patient_id,severity_level,admite_date,admitted_by);
+        if(i>1) return true;
+        else return false;
     }
 
 //    @Override
