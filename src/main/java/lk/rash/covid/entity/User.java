@@ -5,8 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Transactional
 @Data
@@ -15,7 +16,17 @@ import javax.persistence.Id;
 public class User {
 
     @Id
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
+//    @OneToOne
+//    @JoinColumn(name = "user_name")
+@Column(name = "user_name")
     private String Username;
     private String password;
+    @ManyToMany
+    @JoinTable(name = "user_roles",joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name="role_id",referencedColumnName = "role_id")})
+    private List<Role> rolea;
 
 }

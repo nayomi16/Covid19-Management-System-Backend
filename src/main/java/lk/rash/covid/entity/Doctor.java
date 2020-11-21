@@ -12,11 +12,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Transactional
-@Table(name="`doctor`")
+@Table(name = "`doctor`")
 public class Doctor {
-    
+
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_name", referencedColumnName = "user_name", nullable = false)
+
+//    private String id;
+    private User user;
     private String name;
     private String email;
     private boolean is_director;
@@ -30,7 +36,6 @@ public class Doctor {
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name="hospital_id")
 //    private Hospital hospital;
-
 
 
 //    public Doctor() {
