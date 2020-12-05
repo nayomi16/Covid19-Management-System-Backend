@@ -3,12 +3,15 @@ package lk.rash.covid.controller;
 import lk.rash.covid.dto.PatientCount;
 import lk.rash.covid.dto.PatientDto;
 import lk.rash.covid.dto.PatientUpdateDto;
+import lk.rash.covid.response.PatientResponse;
 import lk.rash.covid.response.StandardResponse;
 import lk.rash.covid.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
 
 @RestController
 @RequestMapping("/api/v1/patient")
@@ -19,10 +22,10 @@ public class PatientController {
     PatientCount patientCount;
 
     @PostMapping("/register")
-    public ResponseEntity registerPatient(@RequestBody PatientDto patientDto){
-        service.save(patientDto);
+    public ResponseEntity registerPatient(@RequestBody PatientDto patientDto) throws SQLException, ClassNotFoundException {
+        PatientResponse patientResponse = service.save(patientDto);
 
-        return new ResponseEntity("Done", HttpStatus.OK);
+        return new ResponseEntity(new StandardResponse(200,"true",patientResponse), HttpStatus.OK);
     }
 
 

@@ -23,4 +23,15 @@ public class DoctorServiceImpl implements DoctorService {
         Doctor doctor = modelMapper.map(doctorDto, Doctor.class);
         repo.save(doctor);
     }
+
+    @Override
+    public boolean isDirector(String username) {
+        System.out.println(username);
+        Doctor isDirector = repo.getDoctor(username).get();
+        System.out.println(isDirector.isDirector());
+        if(isDirector!=null){
+            return true;
+        }else return false;
+
+    }
 }

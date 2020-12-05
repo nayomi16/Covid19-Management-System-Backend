@@ -32,11 +32,11 @@ public class Patient {
     private Date discharge_date;
 
 
-    @ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "admitted_by", referencedColumnName = "id", nullable = false)
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "admitted_by", referencedColumnName = "id", nullable = true)
     private Doctor doctor;
-    @ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "discharged_by", referencedColumnName = "id", nullable = false)
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "discharged_by", referencedColumnName = "id", nullable = true)
     private Doctor doctor1;
 
 //    public Patient(String id, String first_name, String last_name, String district, int location_x, int location_y, String severity_level, String gender, String contact, String email, int age, Date admit_date, String admitted_by, Date discharge_date, String discharged_by) {

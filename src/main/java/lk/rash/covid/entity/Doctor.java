@@ -25,7 +25,8 @@ public class Doctor {
     private User user;
     private String name;
     private String email;
-    private boolean is_director;
+    @Column(name = "is_director", columnDefinition = "boolean default true")
+    private boolean isDirector;
 //    @Column(name="hospital_id")
 
 

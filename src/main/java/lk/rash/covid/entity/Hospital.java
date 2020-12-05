@@ -22,4 +22,6 @@ public class Hospital {
     private String district;
     private int location_x;
     private int location_y;
+
+
 }

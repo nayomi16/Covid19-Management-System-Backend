@@ -1,11 +1,13 @@
 package lk.rash.covid.service;
 
 import lk.rash.covid.dto.PatientDto;
+import lk.rash.covid.response.PatientResponse;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 public interface PatientService {
-    void save(PatientDto patientDto);
+    PatientResponse save(PatientDto patientDto) throws SQLException, ClassNotFoundException;
 
     int activeCasesCount();
     int dischargedCasesCount();
