@@ -21,4 +21,6 @@ public class HospitalServiceImpl implements HospitalService {
         Hospital hospital = mapper.map(hospitalDto, Hospital.class);
         repository.save(hospital);
     }
+
+
 }

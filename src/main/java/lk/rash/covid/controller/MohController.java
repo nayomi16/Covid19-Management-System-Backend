@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1/hospital")
-public class HospitalController {
+@RequestMapping("api/v1/moh")
+public class MohController {
 
     @Autowired
-    HospitalService service;
+    HospitalService hospitalService;
 
-    @PostMapping("/add")
+    @PostMapping("/addHospital")
     public ResponseEntity addHospital(@RequestBody HospitalDto hospitalDto){
-        service.add(hospitalDto);
+        hospitalService.add(hospitalDto);
         return new ResponseEntity("done", HttpStatus.OK);
     }
+
+
+
 }
