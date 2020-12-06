@@ -49,4 +49,10 @@ public class DoctorController {
         return new ResponseEntity(new StandardResponse(200,"done",allDocters),HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity updateDoctor(@RequestParam String hospitalId, @RequestParam String username){
+        boolean isUpdated = service.isUpdated(hospitalId, username);
+        return new ResponseEntity(new StandardResponse(200,"done",isUpdated),HttpStatus.OK);
+    }
+
 }

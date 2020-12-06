@@ -16,4 +16,6 @@ public interface DoctorService {
     List<DoctorHosDto> getDocters(String hospitalId);
 
     List<DoctorHosDto> getAllDocters();
+
+    boolean isUpdated(String hospitalId, String username);
 }

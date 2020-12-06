@@ -115,4 +115,15 @@ public class DoctorServiceImpl implements DoctorService {
 
         return allDocs;
     }
+
+    @Override
+    public boolean isUpdated(String hospitalId, String userName) {
+
+
+        int isUpdate = repo.doctorUpdate(hospitalId, userName);
+        if(isUpdate>0){
+            return true;
+        }else return false;
+
+    }
 }
