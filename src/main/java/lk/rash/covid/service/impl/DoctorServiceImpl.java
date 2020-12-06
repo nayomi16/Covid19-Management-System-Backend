@@ -1,6 +1,7 @@
 package lk.rash.covid.service.impl;
 
 import lk.rash.covid.dto.DoctorDto;
+import lk.rash.covid.dto.DoctorHosDto;
 import lk.rash.covid.dto.HospitalBedRespDto;
 import lk.rash.covid.entity.Doctor;
 import lk.rash.covid.entity.Hospital;
@@ -77,5 +78,41 @@ public class DoctorServiceImpl implements DoctorService {
             }else return new HospitaBedResponse(hosId,hosName,null);
 
 
+    }
+
+    @Override
+    public List<DoctorHosDto> getDocters(String hospitalId) {
+        List<DoctorHosDto> doctorHosDtoList=new ArrayList<>();
+        List<Doctor> doctors = repo.findByHosId(hospitalId);
+        for (Doctor doctor :doctors)
+        {
+            int id=doctor.getId();
+            String name=doctor.getName();
+            boolean isdirector=doctor.isDirector();
+            String email=doctor.getEmail();
+
+            DoctorHosDto doctorHosDto=new DoctorHosDto(id,name,hospitalId,isdirector,email);
+            doctorHosDtoList.add(doctorHosDto);
+        }
+        return doctorHosDtoList;
+    }
+
+    @Override
+    public List<DoctorHosDto> getAllDocters() {
+        List<DoctorHosDto> allDocs=new ArrayList<>();
+        List<Doctor> allDoctors = repo.findAll();
+        for (Doctor doctor :allDoctors)
+        {
+            int id=doctor.getId();
+            String name=doctor.getName();
+            boolean isdirector=doctor.isDirector();
+            String email=doctor.getEmail();
+            String hospitalId=doctor.getHospital().getId();
+            DoctorHosDto doctorHosDto=new DoctorHosDto(id,name,hospitalId,isdirector,email);
+            allDocs.add(doctorHosDto);
+        }
+
+
+        return allDocs;
     }
 }

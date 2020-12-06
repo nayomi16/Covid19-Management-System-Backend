@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -17,4 +18,6 @@ public interface DoctorRepository extends JpaRepository<Doctor,Integer> {
     int isDirector(@Param("username") String username);
     @Query(value = "select * from doctor where user_name =:username",nativeQuery = true)
     Optional<Doctor> getDoctor(@Param("username") String username);
+    @Query(value = "select * from doctor where hospital_id = :hospitalId",nativeQuery = true)
+    List<Doctor> findByHosId(@Param("hospitalId") String hospitalId);
 }
