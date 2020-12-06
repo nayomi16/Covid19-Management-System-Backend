@@ -33,11 +33,14 @@ public class Patient {
 
 
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "admitted_by", referencedColumnName = "id", nullable = true)
-    private Doctor doctor;
+    @JoinColumn(name = "admitted_by", referencedColumnName = "user_name")
+    private Doctor addmitedBy;
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "discharged_by", referencedColumnName = "id", nullable = true)
-    private Doctor doctor1;
+    @JoinColumn(name = "discharged_by", referencedColumnName = "user_name")
+    private Doctor dischargeBy;
+
+
+
 
 //    public Patient(String id, String first_name, String last_name, String district, int location_x, int location_y, String severity_level, String gender, String contact, String email, int age, Date admit_date, String admitted_by, Date discharge_date, String discharged_by) {
 //        this.id = id;

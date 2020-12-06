@@ -13,7 +13,8 @@ public interface DoctorRepository extends JpaRepository<Doctor,Integer> {
 //    @Query(value = "select  is_director from doctor where user_name= :username",nativeQuery = true)
 //    Integer isDirector(@Param("username") String username);
 
+    @Query(value = "select is_director from doctor where user_name =:username",nativeQuery = true)
+    int isDirector(@Param("username") String username);
     @Query(value = "select * from doctor where user_name =:username",nativeQuery = true)
     Optional<Doctor> getDoctor(@Param("username") String username);
-
 }

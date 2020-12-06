@@ -1,6 +1,7 @@
 package lk.rash.covid.controller;
 
 import lk.rash.covid.dto.DoctorDto;
+import lk.rash.covid.response.HospitaBedResponse;
 import lk.rash.covid.response.StandardResponse;
 import lk.rash.covid.service.DoctorService;
 import lombok.Getter;
@@ -27,7 +28,11 @@ public class DoctorController {
         return new ResponseEntity(new StandardResponse(200,"done",director),HttpStatus.OK);
     }
 
-//    @GetMapping("/")
+    @GetMapping("/id")
+    public ResponseEntity hospitalBedList(@RequestParam String username){
+        HospitaBedResponse bedResponse = service.getBedList(username);
+        return new ResponseEntity(new StandardResponse(200,"done",bedResponse),HttpStatus.OK);
+    }
 
 
 

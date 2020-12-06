@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface HospitalBedRepository extends JpaRepository<HospitalBed,Integer> {
@@ -16,6 +17,9 @@ public interface HospitalBedRepository extends JpaRepository<HospitalBed,Integer
     List<String> BedsAvailableHospitals();
     @Query(value = "select min(id) from hospital_bed where hospital_id = :finalHid and patient_id is null",nativeQuery = true)
     int getBedId(@Param("finalHid") String finalHid);
+
+    @Query(value = "select * from hospital_bed where hospital_id= :hosId",nativeQuery = true)
+    List<HospitalBed> findByHosId(@Param("hosId") String hosId);
 //    @Modifying
 //    @Query(value = "update hospital_bed hb set hb.patient_id= :patientId where hb.id= :bedId and hb.hospital_id= :finalHid",nativeQuery = true)
 //    void patientBedUpdate(@Param("finalHid") String finalHid,@Param("bedId") int bedId,@Param("patientId") String patientId);
