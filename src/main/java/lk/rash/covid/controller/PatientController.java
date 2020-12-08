@@ -1,5 +1,6 @@
 package lk.rash.covid.controller;
 
+import lk.rash.covid.dto.HospitalPatient;
 import lk.rash.covid.dto.PatientCount;
 import lk.rash.covid.dto.PatientDto;
 import lk.rash.covid.dto.PatientUpdateDto;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/patient")
@@ -51,9 +53,23 @@ public class PatientController {
         return new ResponseEntity(new StandardResponse(200,"ll",patient),HttpStatus.OK);
     }
 
+    @GetMapping("/hospitalPatientCount")
+    public ResponseEntity getPatientCount(){
+        List<HospitalPatient> patients=service.getPatientCount();
+        return new ResponseEntity(new StandardResponse(200,"ll",patients),HttpStatus.OK);
+    }
+
+
+    @GetMapping
+    public ResponseEntity getAllPatients(){
+        List<PatientDto> AllPatients=service.getAllPatients();
+        return new ResponseEntity(new StandardResponse(200,"ll",AllPatients),HttpStatus.OK);
+    }
+
+
     @PutMapping
     public ResponseEntity updatePatient(@RequestBody PatientUpdateDto updateDto){
-        Boolean isUpdated = service.updatePatient(updateDto.getPatient_id(), updateDto.getSeverity_level(), updateDto.getAdmite_date(), updateDto.getAdmitted_by());
+        Boolean isUpdated = service.updatePatient(updateDto.getPatientId(),updateDto.getDoctorId(), updateDto.getSeverityLevel(), updateDto.getDate(), updateDto.getRole());
         return new ResponseEntity(new StandardResponse(200,"updated",isUpdated),HttpStatus.OK);
     }
 

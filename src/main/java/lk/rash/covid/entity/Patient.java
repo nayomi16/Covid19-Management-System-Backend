@@ -35,7 +35,7 @@ public class Patient {
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "admitted_by", referencedColumnName = "user_name")
     private Doctor addmitedBy;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "discharged_by", referencedColumnName = "user_name")
     private Doctor dischargeBy;
 

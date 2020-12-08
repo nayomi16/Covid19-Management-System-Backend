@@ -1,5 +1,6 @@
 package lk.rash.covid.service.impl;
 
+import lk.rash.covid.dto.HospitalPatient;
 import lk.rash.covid.dto.PatientDto;
 import lk.rash.covid.entity.Hospital;
 import lk.rash.covid.entity.HospitalBed;
@@ -130,9 +131,19 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Boolean updatePatient(String patient_id, String severity_level, Date admite_date, String admitted_by) {
-        int i=repository.upadatePatient(patient_id,severity_level,admite_date,admitted_by);
-        if(i>1) return true;
+    public Boolean updatePatient(String patientId, String doctorId, String severity_level, Date date, String role) {
+        int i=0;
+        if(role.equals("admit")) {
+             i=repository.upadatePatient(patientId,doctorId, severity_level, date);
+
+        }
+        else if(role.equals("discharge")){
+//            System.out.println("kkkkkkkkkkkkkkk");
+            i=repository.upadatePatientDis(patientId,doctorId,date);
+
+        }
+        System.out.println(i+"iiiiiii");
+        if (i > 0) return true;
         else return false;
     }
 
@@ -141,6 +152,30 @@ public class PatientServiceImpl implements PatientService {
         Patient patient = repository.findById(patientId).get();
         PatientDto patientDto = modelMapper.map(patient, PatientDto.class);
         return patientDto;
+    }
+
+    @Override
+    public List<HospitalPatient> getPatientCount() {
+        List<HospitalPatient> hospitalPatients=new ArrayList<>();
+        List<Hospital> hospitals = hospitalRepository.findAll();
+        for (Hospital h:hospitals) {
+            int patients=10-hospitalBedRepository.bedCount(h.getId());
+            HospitalPatient patient=new HospitalPatient(h.getId(),h.getName(),h.getDistrict(),patients);
+            hospitalPatients.add(patient);
+        }
+
+        return hospitalPatients;
+    }
+
+    @Override
+    public List<PatientDto> getAllPatients() {
+        List<PatientDto> patientDtos=new ArrayList<>();
+        List<Patient> all = repository.findAll();
+        for (Patient patient:all) {
+            PatientDto dto = modelMapper.map(patient, PatientDto.class);
+            patientDtos.add(dto);
+        }
+        return patientDtos;
     }
 
 //    @Override

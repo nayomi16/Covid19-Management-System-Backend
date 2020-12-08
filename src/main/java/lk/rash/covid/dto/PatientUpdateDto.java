@@ -9,9 +9,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PatientUpdateDto {
-    private String patient_id;
-    private String severity_level;
-    private Date admite_date;
-    private String admitted_by;
+    private String patientId;
+    private String doctorId;
+    private String severityLevel;
+    private Date date;
+    private String role;
 
 }
