@@ -3,6 +3,7 @@ package lk.rash.covid.controller;
 import lk.rash.covid.dto.PatientCount;
 import lk.rash.covid.dto.PatientDto;
 import lk.rash.covid.dto.PatientUpdateDto;
+import lk.rash.covid.entity.Patient;
 import lk.rash.covid.response.PatientResponse;
 import lk.rash.covid.response.StandardResponse;
 import lk.rash.covid.service.PatientService;
@@ -43,6 +44,12 @@ public class PatientController {
 //        return new ResponseEntity("ok",HttpStatus.OK);
 //
 //    }
+
+    @GetMapping("/id")
+    public ResponseEntity getPatient(@RequestParam String patientId){
+        PatientDto patient=service.getPatient(patientId);
+        return new ResponseEntity(new StandardResponse(200,"ll",patient),HttpStatus.OK);
+    }
 
     @PutMapping
     public ResponseEntity updatePatient(@RequestBody PatientUpdateDto updateDto){

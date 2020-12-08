@@ -24,7 +24,7 @@ public class PatientQueue implements Serializable {
     @GenericGenerator(name = "seq", strategy="increment")
     private int id;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "patient_id", referencedColumnName = "id", nullable = false)
     private Patient patient;
 

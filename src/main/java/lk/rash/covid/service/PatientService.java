@@ -14,6 +14,8 @@ public interface PatientService {
 
     Boolean updatePatient(String patient_id, String severity_level, Date admite_date, String admitted_by);
 
+    PatientDto getPatient(String patientId);
+
 
 //    void getPatientCount();
 }

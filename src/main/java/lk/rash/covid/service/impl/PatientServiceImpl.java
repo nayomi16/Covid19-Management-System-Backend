@@ -136,6 +136,13 @@ public class PatientServiceImpl implements PatientService {
         else return false;
     }
 
+    @Override
+    public PatientDto getPatient(String patientId) {
+        Patient patient = repository.findById(patientId).get();
+        PatientDto patientDto = modelMapper.map(patient, PatientDto.class);
+        return patientDto;
+    }
+
 //    @Override
 //    public void getPatientCount() {
 //        repository.getPatientCount();
